@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?><Task schemaVersion="5.0">
+        <Registration>
+            <Name>Line Chart Apr25,2016</Name>
+            <Description>Line charts show the mathematical relationships between variables by revealing trends or patterns of data points.</Description>
+            <GUID>6D9887F1-2D2E-451D-B689-35491D27DAE3</GUID>
+            <Procedures>SGPLOT</Procedures>
+            <Version>3.5</Version>
+                        <Links>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+SGPLOT">PROC SGPLOT Documentation</Link>
+                                <Link href=""> </Link>
+                                <Link href=""> </Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+SGPLOT">PROC SGPLOT Papers</Link>
+                                <Link href=""> </Link>
+                                <Link href=""> </Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+SGPLOT">PROC SGPLOT Samples and SAS Notes</Link>
+                        </Links>
+        </Registration>
+        
+        <Metadata>
+
+                        <!--- Define the data roles for this task.    -->
+
+                        <DataSources>
+                                <DataSource name="DATASOURCE">
+                                        <Roles>
+                                                <Role maxVars="1" minVars="1" name="CATEGORY" type="A">Category variable:</Role>
+                                                <Role maxVars="1" minVars="0" name="RESPONSE" type="N">Response variable:</Role>
+                                                <Role maxVars="1" minVars="0" name="GROUP" type="A">Group variable:</Role>
+                                                <Role maxVars="1" minVars="0" name="URLVAR" type="C">URL variable:</Role>
+                                        </Roles>
+                                </DataSource>
+                        </DataSources>
+
+                        <Options>
+                                <Option inputType="string" name="DATATAB">DATA</Option>
+                                <Option inputType="string" name="DATAGROUP">DATA</Option>
+                                <Option inputType="string" name="ROLESGROUP">ROLES</Option>
+                                <Option inputType="string" name="OPTIONSTAB">OPTIONS</Option>
+                                
+                                <!--- Define the task options.-->
+                                <Option inputType="string" name="where">WHERE CLAUSE FILTER</Option>
+                                    <Option defaultValue="0" inputType="checkbox" name="applyWhereClause">Apply where clause</Option>                              
+                                    <Option defaultValue="" indent="1" inputType="textbox" name="whereString" width="300px">Where string:</Option>
+                                    <Option defaultValue="0" indent="1" inputType="checkbox" name="includeAsFootnote">Include as footnote</Option>                              
+                                    <Option inputType="string" name="whereClause">Where clause:</Option>                
+
+                                <Option inputType="string" name="Title">TITLE AND FOOTNOTE</Option>
+                                  <Option defaultValue="" inputType="inputtext" name="titleSTRING" width="400px">Title:</Option>
+                                  <Option defaultValue="0" inputType="checkbox" name="setTITLESIZE">Set title font size</Option>
+                                  <Option decimalPlaces="0" defaultValue="14" increment="1" inputType="numstepper" maxValue="24" minValue="5" name="titleSIZE" required="true" size="8em">Font size:</Option>                                               
+                                  <Option defaultValue="" inputType="inputtext" name="footnoteSTRING" width="400px">Footnote:</Option>
+                                  <Option defaultValue="0" inputType="checkbox" name="setFOOTNOTESIZE">Set footnote font size</Option>
+                                  <Option decimalPlaces="0" defaultValue="12" increment="1" inputType="numstepper" maxValue="20" minValue="5" name="footnoteSIZE" required="true" size="8em">Font size:</Option>                                               
+
+                                <Option inputType="string" name="Statistics">STATISTICS</Option>
+                                        <Option defaultValue="1" inputType="radio" name="Mean" value="Mean" variable="lineSTAT">Mean</Option>
+                                        <Option inputType="radio" name="Sum" value="Sum" variable="lineSTAT">Sum</Option>
+
+                                <Option inputType="string" name="LineDetails">LINE DETAILS</Option>
+                                <Option defaultValue="0" inputType="checkbox" name="useCOLOR">Apply line color</Option>                            
+                                    <Option defaultValue="#003399" indent="1" inputType="color" name="lineCOLOR">Line color</Option>
+                                    <Option decimalPlaces="0" defaultValue="5" increment="1" indent="1" inputType="numstepper" maxValue="20" minValue="1" name="lineTHICK" required="true" size="8em">Line thickness:</Option>
+                                    <Option decimalPlaces="0,2" defaultValue="0" increment="0.05" indent="1" inputType="numstepper" maxValue="1.00" minValue="0.00" name="lineTRANS" required="true" size="8em">Transparency:</Option>
+                                    <Option defaultValue="0" indent="1" inputType="checkbox" name="linePATTERN">Use solid line</Option>
+
+                                <Option inputType="string" name="LineLabels">LINE LABELS</Option>
+                                    <Option defaultValue="0" inputType="checkbox" name="lineLABELS">Show line labels</Option>
+                                        
+                                <Option inputType="string" name="CategoryAxis">CATEGORY AXIS</Option>
+                                    <Option defaultValue="0" inputType="checkbox" name="catREVERSE">Reverse</Option>
+                                    <Option defaultValue="0" inputType="checkbox" name="sortbyDATA">Show values in data order</Option>
+                                    <Option defaultValue="1" inputType="checkbox" name="showCATLABEL">Show label</Option>
+                                        <Option defaultValue="" inputType="inputtext" name="catLABEL" width="300px">Custom label:</Option>
+
+            <Option inputType="string" name="ResponseAxis">RESPONSE AXIS</Option>
+                 <Option defaultValue="1" inputType="checkbox" name="showRESPGRID">Show grid</Option>
+                 <Option defaultValue="0" inputType="checkbox" name="dropSTATLABEL">Drop statistics suffix</Option>
+                 <Option defaultValue="1" inputType="checkbox" name="showRESPLABEL">Show label</Option>
+                 <Option defaultValue="" inputType="inputtext" name="respLABEL" width="300px">Custom label:</Option>
+
+            <Option inputType="string" name="Legend">LEGEND DETAILS</Option>
+                <Option defaultValue="1" inputType="checkbox" name="legendSHOW">Show legend</Option>                         
+                <Option defaultValue="Outside" inputType="combobox" name="legendLOC" width="250px">Legend location:</Option>
+                    <Option inputType="string" name="Outside">Outside</Option>
+                    <Option inputType="string" name="Inside">Inside</Option>
+
+            <Option inputType="string" name="GraphSize">GRAPH SIZE</Option>
+                <Option defaultValue="in" inputType="combobox" name="dimTYPE" width="100px">Dimension:</Option>
+                    <Option inputType="string" name="in">Inches</Option>
+                    <Option inputType="string" name="cm">Cms</Option>
+                    <Option inputType="string" name="px">Pixels</Option>
+                <Option decimalPlaces="0,1" defaultValue="6.4" increment="0.1" inputType="numstepper" maxValue="12.0" minValue="2.0" name="inchWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="4.8" increment="0.1" inputType="numstepper" maxValue="12.0" minValue="2.0" name="inchHEIGHT" required="true" size="10em">Height:</Option>
+                <Option decimalPlaces="0,1" defaultValue="16" increment="0.1" inputType="numstepper" maxValue="30.0" minValue="5.0" name="cmWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="12" increment="0.1" inputType="numstepper" maxValue="30.0" minValue="5.0" name="cmHEIGHT" required="true" size="10em">Height:</Option>
+                <Option decimalPlaces="0,1" defaultValue="640" increment="1" inputType="numstepper" maxValue="1200" minValue="50" name="pixelWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="480" increment="1" inputType="numstepper" maxValue="1200" minValue="50" name="pixelHEIGHT" required="true" size="10em">Height:</Option>
+
+
+          </Options>
+        </Metadata>
+        
+          <!--- Define the task options relationships                  -->
+          <!--- The UI engine will determine the best respresentation. -->
+          
+          <UI>
+                    <Container option="DATATAB">
+                        <Group open="true" option="DATAGROUP">
+                            <DataItem data="DATASOURCE"/>
+                        </Group>
+                        
+                        <Group open="false" option="where">                
+                            <OptionItem option="applyWhereClause"/>
+                            <OptionItem option="whereString"/>
+                            <OptionItem option="includeAsFootnote"/>                
+                        </Group>
+            
+                        <Group open="true" option="ROLESGROUP">
+                            <RoleItem role="CATEGORY"/>
+                            <RoleItem role="RESPONSE"/>
+                            <RoleItem role="GROUP"/>
+                            <RoleItem role="URLVAR"/>
+                        </Group>
+                                
+                        <Group option="Statistics">
+                            <OptionItem option="Mean"/>
+                            <OptionItem option="Sum"/>                              
+                        </Group>                                
+                    </Container>
+
+                    <Container option="OPTIONSTAB">
+                      <Group open="true" option="Title">
+                        <OptionItem option="titleSTRING"/>
+                        <OptionItem option="setTITLESIZE"/>                            
+                        <OptionItem option="titleSIZE"/>                            
+                        <OptionItem option="footnoteSTRING"/>
+                        <OptionItem option="setFOOTNOTESIZE"/>                            
+                        <OptionItem option="footnoteSIZE"/>                            
+                      </Group> 
+                   
+                        <Group option="LineDetails">
+                            <OptionItem option="useCOLOR"/>
+                            <OptionItem option="lineCOLOR"/>
+                            <OptionItem option="lineTHICK"/>
+                            <OptionItem option="lineTRANS"/>
+                            <OptionItem option="linePATTERN"/>                      
+                    </Group>
+                    
+                        <Group option="LineLabels">
+                            <OptionItem option="lineLABELS"/>
+                    </Group>
+          
+                        <Group option="CategoryAxis">
+                            <OptionItem option="catREVERSE"/>
+                            <OptionItem option="sortbyDATA"/>
+                            <OptionItem option="showCATLABEL"/>
+                            <OptionItem option="catLABEL"/>
+                    </Group>
+                    
+                        <Group option="ResponseAxis">
+                            <OptionItem option="showRESPGRID"/>
+                            <OptionItem option="dropSTATLABEL"/>
+                            <OptionItem option="showRESPLABEL"/>                            
+                            <OptionItem option="respLABEL"/>                        
+                    </Group>                
+
+                        <Group option="Legend">                  
+                            <OptionChoice option="legendLOC">
+                                        <OptionItem option="Outside"/>
+                                        <OptionItem option="Inside"/>
+                                </OptionChoice>                         
+                    </Group>                
+              <Group option="GraphSize">
+                <OptionChoice option="dimTYPE">
+                    <OptionItem option="in"/>                                             
+                    <OptionItem option="cm"/>
+                    <OptionItem option="px"/>
+                </OptionChoice> 
+                <OptionItem option="inchWIDTH"/>
+                <OptionItem option="inchHEIGHT"/>
+                <OptionItem option="cmWIDTH"/>
+                <OptionItem option="cmHEIGHT"/>
+                <OptionItem option="pixelWIDTH"/>
+                <OptionItem option="pixelHEIGHT"/>                                           
+              </Group>
+
+            </Container>
+          </UI>
+
+        <Dependencies>
+                <Dependency condition=" $applyWhereClause== '1' ">
+                    <Target action="enable" conditionResult="true" option="whereString"/>
+                    <Target action="disable" conditionResult="false" option="whereString"/>
+                    <Target action="enable" conditionResult="true" option="includeAsFootnote"/>
+                    <Target action="disable" conditionResult="false" option="includeAsFootnote"/>
+                </Dependency>
+        
+                <Dependency condition="$RESPONSE.size() &gt; 0">
+                        <Target action="enable" conditionResult="true" option="Sum"/>
+                        <Target action="disable" conditionResult="false" option="Sum"/>
+                        <Target action="enable" conditionResult="true" option="Mean"/>
+                        <Target action="disable" conditionResult="false" option="Mean"/>
+                        <Target action="enable" conditionResult="true" option="dropSTATLABEL"/>
+                        <Target action="disable" conditionResult="false" option="dropSTATLABEL"/>                        
+                </Dependency>
+
+                <Dependency condition="$GROUP.size() &gt; 0">
+                        <Target action="disable" conditionResult="true" option="useCOLOR"/>
+                        <Target action="enable" conditionResult="false" option="useCOLOR"/>
+                        <Target action="disable" conditionResult="true" option="lineCOLOR"/>
+                        <Target action="enable" conditionResult="false" option="lineCOLOR"/>
+                </Dependency>
+
+                <Dependency condition=" !($GROUP.size() &gt; 0) || $lineLABELS == '1' ">
+                        <Target action="disable" conditionResult="true" option="legendSHOW"/>
+                        <Target action="enable" conditionResult="false" option="legendSHOW"/>
+                        <Target action="disable" conditionResult="true" option="legendLOC"/>
+                        <Target action="enable" conditionResult="false" option="legendLOC"/>
+                </Dependency>
+
+                <Dependency condition="$setTITLESIZE == 1">
+                  <Target action="enable" conditionResult="true" option="titleSIZE"/>
+                  <Target action="disable" conditionResult="false" option="titleSIZE"/>
+                </Dependency>
+
+                <Dependency condition="$setFOOTNOTESIZE == 1">
+                  <Target action="enable" conditionResult="true" option="footnoteSIZE"/>
+                  <Target action="disable" conditionResult="false" option="footnoteSIZE"/>
+                </Dependency>
+        
+                <Dependency condition=" $useCOLOR== '1' ">
+                    <Target action="enable" conditionResult="true" option="lineCOLOR"/>
+                    <Target action="disable" conditionResult="false" option="lineCOLOR"/>
+                </Dependency>
+
+                <Dependency condition=" $legendSHOW == '1' ">
+                        <Target action="enable" conditionResult="true" option="legendLOC"/>
+                        <Target action="disable" conditionResult="false" option="legendLOC"/>
+                </Dependency>
+
+                <Dependency condition=" $showCATLABEL == '1'">
+                        <Target action="enable" conditionResult="true" option="catLABEL"/>
+                        <Target action="disable" conditionResult="false" option="catLABEL"/>
+                </Dependency>
+                
+                <Dependency condition=" $showRESPLABEL == '1'">
+                        <Target action="enable" conditionResult="true" option="respLABEL"/>
+                        <Target action="disable" conditionResult="false" option="respLABEL"/>
+                </Dependency>
+
+        <Dependency condition="($dimTYPE =='px')">
+           <Target action="show" conditionResult="true" option="pixelWIDTH"/>
+           <Target action="show" conditionResult="true" option="pixelHEIGHT"/>
+           <Target action="hide" conditionResult="true" option="inchWIDTH"/>
+           <Target action="hide" conditionResult="true" option="inchHEIGHT"/>
+           <Target action="hide" conditionResult="true" option="cmWIDTH"/>
+           <Target action="hide" conditionResult="true" option="cmHEIGHT"/>
+        </Dependency>
+        <Dependency condition="($dimTYPE =='in')">
+           <Target action="hide" conditionResult="true" option="pixelWIDTH"/>
+           <Target action="hide" conditionResult="true" option="pixelHEIGHT"/>
+           <Target action="show" conditionResult="true" option="inchWIDTH"/>
+           <Target action="show" conditionResult="true" option="inchHEIGHT"/>
+           <Target action="hide" conditionResult="true" option="cmWIDTH"/>
+           <Target action="hide" conditionResult="true" option="cmHEIGHT"/>
+        </Dependency>
+        <Dependency condition="($dimTYPE =='cm')">
+           <Target action="hide" conditionResult="true" option="pixelWIDTH"/>
+           <Target action="hide" conditionResult="true" option="pixelHEIGHT"/>
+           <Target action="hide" conditionResult="true" option="inchWIDTH"/>
+           <Target action="hide" conditionResult="true" option="inchHEIGHT"/>
+           <Target action="show" conditionResult="true" option="cmWIDTH"/>
+           <Target action="show" conditionResult="true" option="cmHEIGHT"/>
+        </Dependency>
+
+      </Dependencies>
+
+        <!--- Define the velocity code template.        -->
+        
+        <CodeTemplate>
+        
+<![CDATA[
+
+##--Extract first item from list
+#if( $CATEGORY.size() > 0 ) #set( $CAT=$CATEGORY.get(0) ) #end
+#if( $RESPONSE.size() > 0)  #set( $RESP=$RESPONSE.get(0) ) #end
+#if( $GROUP.size() > 0)     #set( $GRP=$GROUP.get(0) ) #end
+#if( $URLVAR.size() > 0)    #set( $URL=$URLVAR.get(0) ) #end
+
+##--Set Graph Size--*/
+#if ( $dimTYPE == "in" )
+  #set ($WIDTH = "$inchWIDTH$dimTYPE" )
+  #set ($HEIGHT = "$inchHEIGHT$dimTYPE" )
+#end
+
+#if ( $dimTYPE == "cm" )
+    #set ($WIDTH = "$cmWIDTH$dimTYPE" )
+    #set ($HEIGHT = "$cmHEIGHT$dimTYPE" )
+#end
+
+#if ( $dimTYPE == "px" )
+    #set ($WIDTH = "$pixelWIDTH$dimTYPE" )
+    #set ($HEIGHT = "$pixelHEIGHT$dimTYPE" )
+#end
+
+##--Build font size strings--*/
+#set( $pt = "pt" )
+#set ($titleSizePt = "$titleSIZE$pt" )
+#set ($footSizePt = "$footnoteSIZE$pt" )
+
+#if ( $lineTHICK != '1' || $linePATTERN == '1' || $useCOLOR == '1') #set ( $SETATTRS='Yes' ) 
+#else #set ( $SETATTRS='No' )
+#end
+
+#set ($catAXIS = 0)
+#if( $showCATLABEL == '0'  ||  $catLABEL != "" || $sortbyDATA == '1' || $catREVERSE== '1' ) #set ($catAXIS = 1) #end
+
+        
+/*--Set output size--*/
+ods graphics / reset 
+  #if (( $WIDTH ne "640px" && $WIDTH ne "6.4in" && $WIDTH ne "16cm") ||
+       ( $HEIGHT  ne "480px" && $HEIGHT ne "4.8in" && $HEIGHT ne "12cm"))
+     width=$WIDTH height=$HEIGHT #end
+  imagemap;
+
+/*--SGPLOT proc statement--*/
+proc sgplot data=$DATASOURCE
+  #if ( $applyWhereClause == 1 && $whereString.length() > 0 ) (where=($whereString)) #end
+  #if ($legendSHOW == '0' || $lineLABELS == '1') #end
+;
+
+##-Build qouted strings for title and footnote to clean up any quotes provided by user
+#if( $titleSTRING != "" ) #set ($qTitleString = $CTMUtil.quoteString($titleSTRING) ) #end
+#if( $footnoteSTRING != "" ) #set ($qFootnoteString = $CTMUtil.quoteString($footnoteSTRING ) ) #end
+
+#if( $titleSTRING != "" || $footnoteSTRING != "" || $includeAsFootnote == 1)
+/*--TITLE and FOOTNOTE--*/
+  #if( $titleSTRING != "" ) title
+    #if( $setTITLESIZE == 1 ) H=$titleSizePt #end 
+      $qTitleString;
+  #end 
+
+  #if( $includeAsFootnote == 1 && $whereString != "" ) footnote j=l
+    #if( $setFOOTNOTESIZE == 1 ) H=$footSizePt #end 
+    #set( $whereStr="$whereClause $whereString" ) $CTMUtil.quoteString($whereStr);
+  #end
+  
+  #if( $footnoteSTRING != "" ) footnote2 j=l
+    #if( $setFOOTNOTESIZE == 1 ) H=$footSizePt #end 
+      $qFootnoteString;
+  #end     
+#end
+
+/*--Line chart settings--*/
+    vline $CAT /        #if( $RESP) response=$RESP #end
+                #if( $URL) url=$URL #end
+                        #if( $GRP) group=$GRP #end
+                        #if( $lineLABELS== '1' )curvelabel #end             
+                        #if( $dropSTATLABEL == '1' ) nostatlabel #end
+                        #if( $SETATTRS == 'Yes' ) lineattrs=( 
+                                #if( $lineTHICK != "1" ) thickness=$lineTHICK #end      
+                                #if( $linePATTERN == "1" ) pattern=solid #end
+                                #if( $useCOLOR == "1" ) color=$lineCOLOR #end                                                                                                           
+                        ) 
+                        #end                    
+                        #if( $lineTRANS != 0) transparency=$lineTRANS #end
+                        #if( $RESP) stat=$lineSTAT #end
+            ;
+          
+#if ($catAXIS == 1)                      
+/*--Category Axis--*/
+        xaxis 
+        #if( $showCATLABEL == '0' )  display=(nolabel) #end
+        #if( $catLABEL && $catLABEL != "" ) label=$CTMUtil.quoteString($catLABEL) #end
+        #if( $sortbyDATA == '1' ) discreteorder=data #end
+        #if( $catREVERSE== '1' ) reverse #end
+        ;
+#end
+       
+/*--Response Axis--*/
+        yaxis
+        #if( $showRESPLABEL == '0' )  display=(nolabel) #end        
+        #if( $showRESPGRID == '1' ) grid #end
+        #if( $showRESPLABEL == '1' && $respLABEL != '' ) label=$CTMUtil.quoteString($respLABEL) #end
+        ;       
+
+#if ($legendSHOW == '1' && $legendLOC == 'Inside')
+  #if ( $GRP && $lineLABELS != '1') 
+      /*--Legend Settings--*/
+      keylegend /
+                #if ( $legendLOC ) location=$legendLOC #end
+                #if ( $legendLOC == 'Inside' ) across=1 #end
+        ;            
+  #end
+#end
+
+run;  
+
+ods graphics / reset; 
+#if( $titleSTRING != "") title; #end 
+#if( $footnoteSTRING != "" || $includeAsFootnote == 1) footnote; #end
+
+]]>
+        </CodeTemplate>  
+</Task>
