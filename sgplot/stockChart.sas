@@ -1,6 +1,6 @@
 /* KNOWLEDGE BASE / SAMPLES & SAS NOTES    */
 /* http://support.sas.com/kb/35/169.html   */
-/* Stock chart */
+/* Stock chart - for SAS Studio 3.5 */
 
 /* This sample uses the SGPLOT procedure to create bands and plot lines to create a stock chart. */
 
