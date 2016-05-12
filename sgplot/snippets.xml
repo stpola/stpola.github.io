@@ -1,6 +1,6 @@
 <Snippets>
 	<Snippet type="sample">
 		<Name label="Create a stock chart"/>
-		<Template uri="./stockchart.sas"/>
+		<Template uri="./stockChart.sas"/>
 	</Snippet>
 </Snippets>
