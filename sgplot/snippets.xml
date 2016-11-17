@@ -2,5 +2,6 @@
 	<Snippet type="sample">
 		<Name label="Create a stock chart"/>
 		<Template uri="./stockChart.sas"/>
+		<Documentation uri="http://support.sas.com/kb/35/169.html" label="Use SGPLOT to create a stock chart"/>
 	</Snippet>
 </Snippets>
