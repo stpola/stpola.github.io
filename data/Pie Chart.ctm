@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?><Task schemaVersion="5.0">
+        <Registration>
+            <Name>Pie Chart</Name>
+            <Description>Pie charts show the relative contribution of the parts to the whole by displaying data as wedge-shaped slices of a circle. Each slice represents a category of data. The size of a slice represents the contribution of the data to the total chart statistic.</Description>
+            <GUID>2CE90D62-24D8-4F53-A177-503E90B648F3</GUID>
+            <Procedures>FREQ MEANS SGRENDER SQL TEMPLATE</Procedures>
+            <Version>3.5</Version>
+                        <Links>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+FREQ">PROC FREQ Documentation</Link>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+MEANS">PROC MEANS Documentation</Link>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+SGRENDER">PROC SGRENDER Documentation</Link>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+SQL">PROC SQL Documentation</Link>
+                                <Link href="http://support.sas.com/cdlsearch?nh=25&amp;ct=80000&amp;qt=PROC+TEMPLATE">PROC TEMPLATE Documentation</Link>
+                                <Link href=""> </Link>
+                                <Link href=""> </Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+FREQ">PROC FREQ Papers</Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+MEANS">PROC MEANS Papers</Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+SGRENDER">PROC SGRENDER Papers</Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+SQL">PROC SQL Papers</Link>
+                                <Link href="http://support.sas.com/dsearch?&amp;ct=5240&amp;qt=PROC+TEMPLATE">PROC TEMPLATE Papers</Link>
+                                <Link href=""> </Link>
+                                <Link href=""> </Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+FREQ">PROC FREQ Samples and SAS Notes</Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+MEANS">PROC MEANS Samples and SAS Notes</Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+SGRENDER">PROC SGRENDER Samples and SAS Notes</Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+SQL">PROC SQL Samples and SAS Notes</Link>
+                                <Link href="http://support.sas.com/kb/?Find=Search&amp;ct=51000&amp;qt=PROC+TEMPLATE">PROC TEMPLATE Samples and SAS Notes</Link>                             
+                        </Links>
+        </Registration>
+
+          <!--- Define the task options relationships                  -->
+          <!--- The UI engine will determine the best respresentation. -->
+
+        <Metadata>
+
+            <!--- Define the data roles for this task.    -->
+            <DataSources>
+                <DataSource name="DATASOURCE">
+                    <Roles>
+                        <Role maxVars="1" minVars="1" name="CATEGORY" type="A">Category variable:</Role>
+                        <Role maxVars="1" minVars="0" name="RESPONSE" type="N">Response variable:</Role>
+                        <Role maxVars="1" minVars="0" name="GROUP" type="A">Group variable:</Role>
+                        <Role maxVars="1" minVars="0" name="URLVAR" type="C">URL variable:</Role>
+                   </Roles>
+              </DataSource>
+          </DataSources>
+
+          <Options>
+            <Option inputType="string" name="DATATAB">DATA</Option>
+                <Option inputType="string" name="DATAGROUP">DATA</Option>
+                <Option inputType="string" name="ROLESGROUP">ROLES</Option>
+                <Option inputType="string" name="OPTIONSTAB">OPTIONS</Option>
+
+            <Option inputType="string" name="where">WHERE CLAUSE FILTER</Option>
+                <Option defaultValue="0" inputType="checkbox" name="applyWhereClause">Apply where clause</Option>                              
+                <Option defaultValue="" indent="1" inputType="textbox" name="whereString" width="300px">Where string:</Option>
+                <Option defaultValue="0" indent="1" inputType="checkbox" name="includeAsFootnote">Include as footnote</Option>
+                <Option inputType="string" name="whereClause">Where clause:</Option>                
+
+            <Option inputType="string" name="Title">TITLE AND FOOTNOTE</Option>
+                <Option defaultValue="" inputType="inputtext" name="titleSTRING" width="400px">Title:</Option>
+                <Option defaultValue="0" inputType="checkbox" name="setTITLESIZE">Set title font size</Option>
+                <Option decimalPlaces="0" defaultValue="14" increment="1" inputType="numstepper" maxValue="24" minValue="5" name="titleSIZE" required="true" size="8em">Font size:</Option>                                               
+                <Option defaultValue="" inputType="inputtext" name="footnoteSTRING" width="400px">Footnote:</Option>
+                <Option defaultValue="0" inputType="checkbox" name="setFOOTNOTESIZE">Set footnote font size</Option>
+                <Option decimalPlaces="0" defaultValue="12" increment="1" inputType="numstepper" maxValue="20" minValue="5" name="footnoteSIZE" required="true" size="8em">Font size:</Option>                                               
+
+            <Option inputType="string" name="Orientation">ORIENTATION</Option>                      
+                <Option defaultValue="Top" inputType="combobox" name="StartFROM" width="250px">Starting point:</Option>
+                    <Option inputType="string" name="Top">Top</Option>
+                    <Option inputType="string" name="Right">Right</Option>
+                    <Option inputType="string" name="Bottom">Bottom</Option>
+                    <Option inputType="string" name="Left">Left</Option>
+            <Option defaultValue="1" inputType="checkbox" name="centerFIRSTSLICE">Center the first slice</Option>
+
+            <Option inputType="string" name="PieDetails">PIE DETAILS</Option>
+                <Option decimalPlaces="0,2" defaultValue="0" increment="0.05" inputType="numstepper" maxValue="1.00" minValue="0.00" name="pieTRANS" required="true" size="8em">Fill Transparency:</Option>                                
+                <Option defaultValue="None" inputType="combobox" name="pieSKIN" width="250px">Data skin:</Option>
+                    <Option inputType="string" name="None">None</Option>
+                    <Option inputType="string" name="Gloss">Gloss</Option>
+                    <Option inputType="string" name="Sheen">Sheen</Option>
+                    <Option inputType="string" name="Crisp">Crisp</Option>
+                    <Option inputType="string" name="Matte">Matte</Option>
+                    <Option inputType="string" name="Pressed">Pressed</Option>
+
+            <Option inputType="string" name="PieLabels">PIE LABELS</Option>
+                <Option defaultValue="Auto" inputType="combobox" name="labelLOC" width="250px">Location:</Option>
+                    <Option inputType="string" name="Auto">Auto</Option>
+                    <Option inputType="string" name="Inside">Inside</Option>
+                    <Option inputType="string" name="Outside">Outside</Option>
+            <Option defaultValue="0" inputType="checkbox" name="setLABELSIZE">Set label font size</Option>
+            <Option decimalPlaces="0" defaultValue="10" increment="1" inputType="numstepper" maxValue="20" minValue="5" name="labelSIZE" required="true" size="8em">Font size:</Option>                                               
+                                
+            <Option inputType="string" name="GraphSize">GRAPH SIZE</Option>
+                <Option defaultValue="in" inputType="combobox" name="dimTYPE" width="100px">Dimension:</Option>
+                    <Option inputType="string" name="in">Inches</Option>
+                    <Option inputType="string" name="cm">Cms</Option>
+                    <Option inputType="string" name="px">Pixels</Option>
+                <Option decimalPlaces="0,1" defaultValue="4.8" increment="0.1" inputType="numstepper" maxValue="12.0" minValue="2.0" name="inchWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="4.8" increment="0.1" inputType="numstepper" maxValue="12.0" minValue="2.0" name="inchHEIGHT" required="true" size="10em">Height:</Option>
+                <Option decimalPlaces="0,1" defaultValue="12" increment="0.1" inputType="numstepper" maxValue="30.0" minValue="5.0" name="cmWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="12" increment="0.1" inputType="numstepper" maxValue="30.0" minValue="5.0" name="cmHEIGHT" required="true" size="10em">Height:</Option>
+                <Option decimalPlaces="0,1" defaultValue="480" increment="1" inputType="numstepper" maxValue="1200" minValue="50" name="pixelWIDTH" required="true" size="10em">Width:</Option>
+                <Option decimalPlaces="0,1" defaultValue="480" increment="1" inputType="numstepper" maxValue="1200" minValue="50" name="pixelHEIGHT" required="true" size="10em">Height:</Option>
+                                    
+          </Options>
+                        
+        </Metadata>
+          
+        <UI>
+          <Container option="DATATAB">
+              <Group open="true" option="DATAGROUP">
+                  <DataItem data="DATASOURCE"/>
+              </Group>
+                     
+              <Group open="false" option="where">                
+                  <OptionItem option="applyWhereClause"/>
+                  <OptionItem option="whereString"/>
+                  <OptionItem option="includeAsFootnote"/>                
+              </Group>
+            
+               <Group open="true" option="ROLESGROUP">
+                   <RoleItem role="CATEGORY"/>
+                   <RoleItem role="RESPONSE"/>
+                   <RoleItem role="GROUP"/>
+                   <RoleItem role="URLVAR"/>
+  
+               </Group>
+               <Group option="Orientation">
+                   <OptionChoice option="StartFROM">
+                       <OptionItem option="Top"/>
+                       <OptionItem option="Right"/>
+                       <OptionItem option="Bottom"/>
+                       <OptionItem option="Left"/>                                     
+                       </OptionChoice>
+                       <OptionItem option="centerFIRSTSLICE"/>
+               </Group>
+                       
+           </Container>
+
+           <Container option="OPTIONSTAB">
+                     <Group open="true" option="Title">
+                            <OptionItem option="titleSTRING"/>
+                            <OptionItem option="setTITLESIZE"/>                            
+                            <OptionItem option="titleSIZE"/>                            
+                            <OptionItem option="footnoteSTRING"/>
+                            <OptionItem option="setFOOTNOTESIZE"/>                            
+                           <OptionItem option="footnoteSIZE"/>                            
+                     </Group>
+
+                    <Group option="PieDetails">
+                            <OptionItem option="pieTRANS"/>                             
+                            <OptionChoice option="pieSKIN">
+                                        <OptionItem option="None"/>
+                                        <OptionItem option="Gloss"/>
+                                        <OptionItem option="Sheen"/>
+                                        <OptionItem option="Crisp"/>
+                                        <OptionItem option="Matte"/>
+                                        <OptionItem option="Pressed"/>                                          
+                                </OptionChoice>
+                    </Group>
+                    
+                    <Group option="PieLabels">
+                            <OptionChoice option="labelLOC">
+                                        <OptionItem option="Auto"/>
+                                        <OptionItem option="Inside"/>
+                                        <OptionItem option="Outside"/>
+                            </OptionChoice>
+                            <OptionItem option="setLABELSIZE"/>                            
+                            <OptionItem option="labelSIZE"/>                            
+                    </Group>
+
+            <Group option="GraphSize">
+                <OptionChoice option="dimTYPE">
+                    <OptionItem option="in"/>                                             
+                    <OptionItem option="cm"/>
+                    <OptionItem option="px"/>
+                </OptionChoice> 
+                <OptionItem option="inchWIDTH"/>
+                <OptionItem option="inchHEIGHT"/>
+                <OptionItem option="cmWIDTH"/>
+                <OptionItem option="cmHEIGHT"/>
+                <OptionItem option="pixelWIDTH"/>
+                <OptionItem option="pixelHEIGHT"/>                                           
+            </Group>
+          </Container>
+                    
+        </UI>
+          
+        <Dependencies>
+
+            <Dependency condition=" $applyWhereClause== '1' ">
+                <Target action="enable" conditionResult="true" option="whereString"/>
+                <Target action="disable" conditionResult="false" option="whereString"/>
+                <Target action="enable" conditionResult="true" option="includeAsFootnote"/>
+                <Target action="disable" conditionResult="false" option="includeAsFootnote"/>
+            </Dependency>
+        
+            <Dependency condition="$setTITLESIZE == 1">
+                <Target action="enable" conditionResult="true" option="titleSIZE"/>
+                <Target action="disable" conditionResult="false" option="titleSIZE"/>
+            </Dependency>
+
+            <Dependency condition="$setFOOTNOTESIZE == 1">
+                <Target action="enable" conditionResult="true" option="footnoteSIZE"/>
+                <Target action="disable" conditionResult="false" option="footnoteSIZE"/>
+            </Dependency>
+                
+            <Dependency condition="$setLABELSIZE == 1">
+                <Target action="enable" conditionResult="true" option="labelSIZE"/>
+                <Target action="disable" conditionResult="false" option="labelSIZE"/>
+            </Dependency>
+
+              
+            <Dependency condition="$GROUP.size() &gt; 0 ">
+                <Target action="disable" conditionResult="true" option="labelLOC"/>
+                <Target action="enable" conditionResult="false" option="labelLOC"/>
+            </Dependency>
+
+            <Dependency condition="($dimTYPE =='px')">
+               <Target action="show" conditionResult="true" option="pixelWIDTH"/>
+               <Target action="show" conditionResult="true" option="pixelHEIGHT"/>
+               <Target action="hide" conditionResult="true" option="inchWIDTH"/>
+               <Target action="hide" conditionResult="true" option="inchHEIGHT"/>
+               <Target action="hide" conditionResult="true" option="cmWIDTH"/>
+               <Target action="hide" conditionResult="true" option="cmHEIGHT"/>
+            </Dependency>
+            <Dependency condition="($dimTYPE =='in')">
+               <Target action="hide" conditionResult="true" option="pixelWIDTH"/>
+               <Target action="hide" conditionResult="true" option="pixelHEIGHT"/>
+               <Target action="show" conditionResult="true" option="inchWIDTH"/>
+               <Target action="show" conditionResult="true" option="inchHEIGHT"/>
+               <Target action="hide" conditionResult="true" option="cmWIDTH"/>
+               <Target action="hide" conditionResult="true" option="cmHEIGHT"/>
+            </Dependency>
+            <Dependency condition="($dimTYPE =='cm')">
+               <Target action="hide" conditionResult="true" option="pixelWIDTH"/>
+               <Target action="hide" conditionResult="true" option="pixelHEIGHT"/>
+               <Target action="hide" conditionResult="true" option="inchWIDTH"/>
+               <Target action="hide" conditionResult="true" option="inchHEIGHT"/>
+               <Target action="show" conditionResult="true" option="cmWIDTH"/>
+               <Target action="show" conditionResult="true" option="cmHEIGHT"/>
+            </Dependency>
+
+        </Dependencies>
+        
+        <!--- Define the velocity code template.        -->
+        
+        <CodeTemplate>
+                <![CDATA[
+
+##--Extract first item from list
+#if( $CATEGORY.size() > 0 )  #set( $CAT=$CATEGORY.get(0) ) #end 
+#if( $RESPONSE.size() > 0 )  #set( $RESP=$RESPONSE.get(0) ) #end 
+#if( $GROUP.size() > 0 )     #set( $GRP=$GROUP.get(0) ) #end 
+#if( $URLVAR.size() > 0 )    #set( $URL=$URLVAR.get(0) ) #end 
+
+#if ( $StartFROM == 'Top' )    #set ( $BASELINE=90 ) #end      
+#if ( $StartFROM == 'Right' )  #set ( $BASELINE=0 )  #end
+#if ( $StartFROM == 'Bottom' ) #set ( $BASELINE=270 ) #end
+#if ( $StartFROM == 'Left' )   #set ( $BASELINE=180 ) #end
+
+##--Set Graph Size--*/
+#if ( $dimTYPE == "in" )
+  #set ($WIDTH = "$inchWIDTH$dimTYPE" )
+  #set ($HEIGHT = "$inchHEIGHT$dimTYPE" )
+#end
+
+#if ( $dimTYPE == "cm" )
+    #set ($WIDTH = "$cmWIDTH$dimTYPE" )
+    #set ($HEIGHT = "$cmHEIGHT$dimTYPE" )
+#end
+
+#if ( $dimTYPE == "px" )
+    #set ($WIDTH = "$pixelWIDTH$dimTYPE" )
+    #set ($HEIGHT = "$pixelHEIGHT$dimTYPE" )
+#end
+
+##--When GRP is used, set Label Location to INSIDE
+#if ( $GRP ) #set ( $labelLOCATION='INSIDE') 
+#else #set ( $labelLOCATION=$labelLOC)
+#end
+
+##-Build qouted strings for title and footnote to clean up any quotes provided by user
+#if( $titleSTRING != "" ) #set ($qTitleString = $CTMUtil.quoteString($titleSTRING) ) #end
+#if( $footnoteSTRING != "" ) #set ($qFootnoteString = $CTMUtil.quoteString($footnoteSTRING ) ) #end
+ 
+/*--Define Pie Template--*/
+proc template;
+  define statgraph WebOne.Pie;
+    begingraph;
+      #if( $titleSTRING != "" ) entrytitle $qTitleString 
+         #if( $setTITLESIZE == 1 ) / textattrs=(size=$titleSIZE) #end
+      ; 
+      #end
+
+      #if( $includeAsFootnote == 1 && $whereString != "" ) entryfootnote 
+         halign=left 
+         #set( $whereStr="$whereClause $whereString" ) $CTMUtil.quoteString($whereStr)
+         #if( $setFOOTNOTESIZE == 1 ) / textattrs=(size=$footnoteSIZE) #end
+      ; 
+     #end
+     
+      #if( $footnoteSTRING!= "" ) entryfootnote halign=left $qFootnoteString
+         #if( $setFOOTNOTESIZE == 1 ) / textattrs=(size=$footnoteSIZE) #end
+      ; 
+      #end 
+
+      layout region;
+        piechart category=$CAT
+        #if ( $RESP ) response=$RESP #end
+        /
+        #if ( $GRP ) group=$GRP groupgap=2% #end
+        #if ( $URL) url=$URL #end
+        #if ( $pieSKIN != 'None' ) dataskin=$pieSKIN #end
+        #if ( $pieTRANS != 0 ) fillattrs=(transparency=$pieTRANS) #end
+        start=$BASELINE
+        centerFirstSlice= $centerFIRSTSLICE
+        #if ( $labelLOCATION != 'Auto' ) datalabellocation=$labelLOCATION #end
+        #if( $setLABELSIZE == 1 ) datalabelattrs=(size=$labelSIZE) #end
+                ;       
+      endlayout;
+    endgraph;
+  end;
+run;
+ 
+/*--Set output size--*/
+ods graphics / reset 
+  #if (( $WIDTH ne "480px" && $WIDTH ne "4.8in" && $WIDTH ne "12cm") ||
+       ( $HEIGHT  ne "480px" && $HEIGHT ne "4.8in" && $HEIGHT ne "12cm"))
+     width=$WIDTH height=$HEIGHT #end
+  imagemap;
+
+/*--SGRENDER proc statement--*/
+proc sgrender template=WebOne.Pie data=$DATASOURCE 
+  #if ( $applyWhereClause == 1 && $whereString.length() > 0 ) (where=($whereString)) #end
+;
+run;
+
+ods graphics / reset;
+
+]]>
+        </CodeTemplate>
+
+  
+</Task>

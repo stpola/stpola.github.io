@@ -4,4 +4,8 @@
 		<Name label="Line Chart"/>
 		<Template uri="./Line Chart.ctm"/>
 	</Task>
+	<Task>
+		<Name label="Pie Chart"/>
+		<Template uri="./Pie Chart.ctm"/>
+	</Task
 </Tasks>

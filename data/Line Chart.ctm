@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><Task schemaVersion="5.0">
         <Registration>
-            <Name>Line Chart Apr25,2016</Name>
+            <Name>Line Chart</Name>
             <Description>Line charts show the mathematical relationships between variables by revealing trends or patterns of data points.</Description>
             <GUID>6D9887F1-2D2E-451D-B689-35491D27DAE3</GUID>
             <Procedures>SGPLOT</Procedures>
