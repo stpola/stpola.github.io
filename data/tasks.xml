@@ -7,5 +7,5 @@
 	<Task>
 		<Name label="Pie Chart"/>
 		<Template uri="./Pie Chart.ctm"/>
-	</Task
+	</Task>
 </Tasks>
