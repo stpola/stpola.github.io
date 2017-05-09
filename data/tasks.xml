@@ -8,4 +8,12 @@
 		<Name label="Pie Chart"/>
 		<Template uri="./Pie Chart.ctm"/>
 	</Task>
+	<Task>
+		<Name label="Summary Statistics"/>
+		<Template uri="./Summary Statistics.ctm"/>
+	</Task>
+	<Task>
+		<Name label="One-Way ANOVA"/>
+		<Template uri="./One-Way ANOVA.ctm"/>
+	</Task>
 </Tasks>

@@ -1,7 +1,28 @@
 <Snippets>
 	<Snippet type="sample">
+		<Name label="Create a HBar plot"/>
+		<Template uri="./HBar Plot.sas"/>
+	</Snippet>
+	<Snippet type="sample">
+		<Name label="Create a HighLow plot"/>
+		<Template uri="./HighLow Plot.sas"/>
+	</Snippet>
+	<Snippet type="sample">
+		<Name label="Create a Histogram plot"/>
+		<Template uri="./Histogram Plot.sas"/>
+	</Snippet>
+	<Snippet type="sample">
+		<Name label="Create a Cholesterol Level chart"/>
+		<Template uri="./SpecialSymbols Plot.sas"/>
+		<Documentation uri="http://support.sas.com/kb/56/933.html" label="Display special symbols as axis values using PROC FORMAT with PROC SGPLOT"/>
+	</Snippet>
+	<Snippet type="sample">
 		<Name label="Create a stock chart"/>
 		<Template uri="./stockChart.sas"/>
 		<Documentation uri="http://support.sas.com/kb/35/169.html" label="Use SGPLOT to create a stock chart"/>
+	</Snippet>
+	<Snippet type="sample">
+		<Name label="Create a VBox plot"/>
+		<Template uri="./VBox Plot.sas"/>
 	</Snippet>
 </Snippets>
