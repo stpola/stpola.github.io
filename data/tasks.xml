@@ -3,17 +3,29 @@
 	<Task>
 		<Name label="Line Chart"/>
 		<Template uri="./Line Chart.ctm"/>
+		<Keywords>
+            <Keyword word="DATASETS1"/>
+        </Keywords>
 	</Task>
 	<Task>
 		<Name label="Pie Chart"/>
 		<Template uri="./Pie Chart.ctm"/>
+		<Keywords>
+            <Keyword word="DATASETS2"/>
+        </Keywords>
 	</Task>
 	<Task>
 		<Name label="Summary Statistics"/>
 		<Template uri="./Summary Statistics.ctm"/>
+		<Keywords>
+            <Keyword word="DATASETS3"/>
+        </Keywords>
 	</Task>
 	<Task>
 		<Name label="One-Way ANOVA"/>
 		<Template uri="./One-Way ANOVA.ctm"/>
+		<Keywords>
+            <Keyword word="DATASETS4"/>
+        </Keywords>
 	</Task>
 </Tasks>
