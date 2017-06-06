@@ -25,4 +25,8 @@
 		<Name label="Create a VBox plot"/>
 		<Template uri="./VBox Plot.sas"/>
 	</Snippet>
+	<Snippet type="sample">
+		<Name label="Import MS Access file"/>
+		<Template uri="./importAccessFile.sas"/>
+	</Snippet>
 </Snippets>
