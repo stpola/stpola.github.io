@@ -10,7 +10,7 @@ run;
 
 data splitIBM;
    length split $3;
-   set stocks(where=(stock="IBM"));
+   set stocks(where=(stock="Microsoft"));
    label volume='(millions)';
    volume=volume/1000000;
    if date < '01MAY97'd then do;
