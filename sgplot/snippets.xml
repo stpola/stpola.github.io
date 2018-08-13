@@ -11,6 +11,10 @@
 		<Name label="Create a Histogram plot"/>
 		<Template uri="./Histogram Plot.sas"/>
 	</Snippet>
+		<Snippet type="sample">
+		<Name label="Create a Cowboy Hat plot"/>
+		<Template uri="./cowboyhat.sas"/>
+	</Snippet>
 	<Snippet type="sample">
 		<Name label="Create a Cholesterol Level chart"/>
 		<Template uri="./SpecialSymbols Plot.sas"/>
