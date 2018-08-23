@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><Task schemaVersion="5.0">
         <Registration>
-            <Name>Pie Chart</Name>
+            <Name>Pie Chart Git</Name>
             <Description>Pie charts show the relative contribution of the parts to the whole by displaying data as wedge-shaped slices of a circle. Each slice represents a category of data. The size of a slice represents the contribution of the data to the total chart statistic.</Description>
             <GUID>2CE90D62-24D8-4F53-A177-503E90B648F3</GUID>
             <Procedures>FREQ MEANS SGRENDER SQL TEMPLATE</Procedures>
