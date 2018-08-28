@@ -10,7 +10,7 @@ run;
 
 data splitIBM;
    length split $3;
-   set stocks(where=(stock="Microsoft"));
+   set stocks(where=(stock="IBM"));
    label volume='(millions)';
    volume=volume/1000000;
    if date < '01MAY97'd then do;
@@ -21,9 +21,9 @@ data splitIBM;
    end;
    else if date ='01MAY97'd then do;
       open = open / 4;
-      close = close/2;   /*Anomaly in data	*/
+      close = close/2;   /*Anomaly in data  */
       high=high / 4;
-      low=low/2;         /*Anomaly in data	*/
+      low=low/2;         /*Anomaly in data  */
       split="2/1";
       freq=1;
    end;
@@ -35,9 +35,9 @@ data splitIBM;
    end;
    else if date ='03MAY99'd then do;
       open = open / 2;
-*     close = close/2; /*Anomaly in data	*/
+*     close = close/2; /*Anomaly in data    */
       high=high / 2;
-*     low=low/2;       /*Anomaly in data	*/
+*     low=low/2;       /*Anomaly in data    */
       split="2/1";
       freq=1;
    end;
@@ -52,9 +52,9 @@ data moveavg(drop=move25index move50index);
    array move50[50] _temporary_;     
    array vmove25[25] _temporary_; 
    format close high low avg25 avg50 vavg dollar8.0;
-   move25index=mod(_n_,25);	
+   move25index=mod(_n_,25); 
    move50index=mod(_n_,50);
-   vmove25index=mod(_n_,25);	
+   vmove25index=mod(_n_,25);    
    move25index =ifn(move25index,move25index,25);
    move50index =ifn(move50index,move50index,50); 
    vmove25index =ifn(vmove25index,vmove25index,25);
@@ -92,7 +92,7 @@ run;
 
 ods html5(id=web) style=listing;                                                                                                                      
 
-Title1 "Daily Stock Chart";
+Title1 "Daily Stock Chart - IBM";
 proc sgplot data=moveavg(where=(date>='01jan2000'd));
    yaxis grid label="Stock Value";
    band x=date upper=bolupper lower=bollower / 
