@@ -10,7 +10,7 @@ run;
 
 data splitIBM;
    length split $3;
-   set stocks(where=(stock="IBM"));
+   set stocks(where=(stock="Microsoft"));
    label volume='(millions)';
    volume=volume/1000000;
    if date < '01MAY97'd then do;
@@ -92,7 +92,7 @@ run;
 
 ods html5(id=web) style=listing;                                                                                                                      
 
-Title1 "Daily Stock Chart - IBM";
+Title1 "Daily Stock Chart - Microsoft";
 proc sgplot data=moveavg(where=(date>='01jan2000'd));
    yaxis grid label="Stock Value";
    band x=date upper=bolupper lower=bollower / 
