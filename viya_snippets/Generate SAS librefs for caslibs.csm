@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<Snippet schemaVersion="1.0">
+
+	<Registration>
+		<Abbreviation></Abbreviation>
+		<Description></Description>
+		<Procedures></Procedures>
+		<Language>SAS</Language>
+		<Version></Version>
+	</Registration>
+
+	<CodeTemplate><![CDATA[/*****************************************************************************/
+/*  Create a default CAS session and create SAS librefs for existing caslibs */
+/*  so that they are visible in the SAS Studio Libraries tree.               */
+/*****************************************************************************/
+
+cas; 
+caslib _all_ assign;
+
+
+
+]]></CodeTemplate>
+
+</Snippet>

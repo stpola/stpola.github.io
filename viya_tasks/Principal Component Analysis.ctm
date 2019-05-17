@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<Task schemaVersion="7.1">
+    <Registration>
+        <Name>Principal Component Analysis</Name> 
+        <Description>The Principal Component Analysis task performs a principal component analysis by using a variety of methods.</Description> 
+        <GUID>dfb612f7-dabd-4699-be02-1515ccf1ec71</GUID>
+        <Procedures>PCA</Procedures>
+        <Version>5.1</Version>
+        <Links>
+            <Link href="http://documentation.sas.com/?softwareId=STUDIOBASIC&amp;softwareVersion=5.1&amp;softwareContextId=tasks&amp;requestor=inapp">SAS Studio Task Reference Guide</Link>
+            <Link href=""> </Link>
+            <Link href=""> </Link>
+            <Link href="http://documentation.sas.com/?softwareId=ANVIYA&amp;softwareVersion=5.1_8.3&amp;softwareContextId=proc_pca&amp;requestor=inapp">The PCA Procedure</Link>
+            <Link href=""> </Link>
+            <Link href=""> </Link>
+            <Link href="http://support.sas.com/training/viyasdmml">SAS Tutorials</Link>
+        </Links>
+    </Registration>
+    
+    <Metadata>
+        <DataSources>
+            <DataSource libraryEngineInclude="CAS" name="dataset" where="true">
+                <Roles>
+            <Role exclude="partialVariables,freqVariable,weightVariable,byVariables" maxVars="0" minVars="2" name="analysisVariables" order="true" type="N">Interval inputs:</Role>
+            <Role exclude="analysisVariables,freqVariable,weightVariable,byVariables" maxVars="0" minVars="0" name="partialVariables" order="true" type="N">Inputs to partial out:</Role>
+            <Role indent="2" maxVars="0" minVars="1" name="copyVariables" order="true" type="A">Include these variables:</Role>
+            <Role exclude="analysisVariables,partialVariables,weightVariable,byVariables" maxVars="1" minVars="0" name="freqVariable" type="N">Frequency count:</Role>
+            <Role exclude="analysisVariables,partialVariables,freqVariable,byVariables" maxVars="1" minVars="0" name="weightVariable" type="N">Weight:</Role>
+            <Role exclude="analysisVariables,partialVariables,freqVariable,weightVariable" maxVars="0" minVars="0" name="byVariables" order="true" type="A">Group analysis by:</Role>
+                </Roles>
+            </DataSource>
+        </DataSources>
+
+        <Options>
+            <Option inputType="string" name="dataTab">DATA</Option> 
+            <Option inputType="string" name="optionsTab">OPTIONS</Option> 
+            <Option inputType="string" name="dataGroup">DATA</Option> 
+            <Option inputType="string" name="rolesGroup">ROLES</Option> 
+            <Option inputType="string" name="otherRolesGroup">ADDITIONAL ROLES</Option> 
+            <Option inputType="string" name="methodsGroup">METHODS</Option> 
+
+            <Option inputType="string" name="methodDetailsGroup">Details</Option>
+            <Option defaultValue="eigMethodChoice" inputType="combobox" name="methodCombo">Method:</Option>
+            <Option inputType="string" name="eigMethodChoice">Eigenvalue decomposition</Option>
+            <Option inputType="string" name="itergsMethodChoice">Andrecut's Gram-Schmidt orthogonalization method</Option>
+            <Option inputType="string" name="nipalsMethodChoice">Nonlinear iterative partial least squares</Option>
+
+            <Option defaultValue="analyzeCorr" inputType="combobox" name="covCorr">Analyze:</Option>
+            <Option inputType="string" name="analyzeCov">Covariances</Option>
+            <Option inputType="string" name="analyzeCorr">Correlations</Option>
+
+            <Option defaultValue="1" inputType="checkbox" name="intercept">Correct the covariances or correlations for the means</Option>
+ 
+            <Option inputType="checkbox" name="useMaxiter">Specify the maximum number of iterations</Option>
+            <Option decimalPlaces="0" defaultValue="5000" indent="1" inputType="numbertext" invalidMessage="Enter an integer greater than 0 for the maximum number of iterations" maxValue="999999999" minValue="1" missingMessage="Enter an integer greater than 0 for the maximum number of iterations" name="maxiter" promptMessage="Enter an integer greater than 0 for the maximum number of iterations" rangeMessage="Enter an integer greater than 0 for the maximum number of iterations" required="true" width="100px">Iterations:</Option>
+
+            <Option defaultValue="ncomp_All" inputType="combobox" name="ncomp" width="100px">Number of components:</Option>
+            <Option inputType="string" name="ncomp_1">1</Option>
+            <Option inputType="string" name="ncomp_2">2</Option>
+            <Option inputType="string" name="ncomp_3">3</Option>
+            <Option inputType="string" name="ncomp_4">4</Option>
+            <Option inputType="string" name="ncomp_5">5</Option>
+            <Option inputType="string" name="ncomp_All">All</Option>
+            <Option inputType="string" name="ncompSpecify">Use custom value</Option>
+
+            <Option decimalPlaces="0" defaultValue="5" increment="1" indent="1" inputType="numstepper" invalidMessage="Enter an integer for the number of components greater than zero and less or equal to the number of analysis variables" maxValue="999999999" minValue="1" missingMessage="Enter an integer for the number of components greater than zero and less or equal to the number of analysis variables" name="ncompValue" promptMessage="Enter an integer for the number of components greater than zero and less or equal to the number of analysis variables" rangeMessage="Enter an integer for the number of components greater than zero and less or equal to the number of analysis variables" required="true" width="75px">Custom value:</Option>
+
+            <Option defaultValue="stdEigenvalue" inputType="combobox" name="stdScores">Standardize variance of scores:</Option>
+            <Option inputType="string" name="stdUnitVariance">Equal to 1</Option>
+            <Option inputType="string" name="stdEigenvalue">Equal to eigenvalue</Option>
+
+            <Option inputType="checkbox" name="usePrefix">Specify a prefix to label the components</Option>
+            <Option defaultValue="Prin" indent="1" inputType="validationtext" invalidMessage="Enter a valid SAS name for the prefix of the component names" missingMessage="Enter a valid SAS name for the prefix of the component names" name="prefix" promptMessage="Enter a valid SAS name for the prefix of the component names" regExp=".{1,30}" required="true" width="200px">Component prefix:</Option>
+
+            <Option inputType="string" name="plotsGroup">PLOTS</Option>
+            <Option defaultValue="defaultPlotChoice" inputType="combobox" name="plotsCombo">Select plots to display:</Option>
+            <Option inputType="string" name="defaultPlotChoice">Default plots</Option>
+            <Option inputType="string" name="customPlotChoice">Default and additional plots</Option>
+            <Option inputType="string" name="noplotsCombo">No plots</Option>
+            
+            <Option defaultValue="1" indent="1" inputType="checkbox" name="screePlot">Eigenvalue by component (Scree plot)</Option>
+            <Option indent="1" inputType="checkbox" name="profilePlot">Component pattern profiles</Option>
+            
+            <Option inputType="string" name="outputTab">OUTPUT</Option>
+            <Option inputType="string" name="outputGroup">OUTPUT DATA</Option>
+            <Option inputType="string" name="casOutputLibrefNote">The following tables must use a CAS engine libref:</Option>s
+            <Option inputType="checkbox" name="scoresDS">Save component scores</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="scoresDSName" required="true" unique="true">Specify a CAS table:</Option>
+
+            <Option indent="1" inputType="string" name="includeVarsInstruction">Include variables from the input CAS table:</Option>
+            <Option indent="1" inputType="radio" name="includeAllVars" variable="includeVars">All variables</Option>
+            <Option indent="1" inputType="radio" name="includeAnalysisVars" variable="includeVars">Variables used in the analysis</Option>
+            <Option indent="1" inputType="radio" name="includeSelectedVars" variable="includeVars">Selected variables</Option>
+            <Option defaultValue="1" indent="1" inputType="radio" name="includeNoVars" variable="includeVars">No variables</Option>
+
+            <Option inputType="checkbox" name="statDS">Save statistics</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="statDSName" required="true" unique="true">Specify a CAS table:</Option>
+
+        </Options>
+    </Metadata>
+
+    <UI>
+        <Container option="dataTab">
+            <Group open="true" option="dataGroup">
+                <DataItem data="dataset"/>
+            </Group>
+            <Group open="true" option="rolesGroup">
+                <RoleItem role="analysisVariables"/>
+            </Group>
+            <Group option="otherRolesGroup">
+                <RoleItem role="partialVariables"/>
+                <RoleItem role="freqVariable"/>
+                <RoleItem role="weightVariable"/>
+                <RoleItem role="byVariables"/>
+            </Group>
+        </Container>
+        
+        <Container option="optionsTab">
+            <Group open="true" option="methodsGroup">
+                <OptionChoice option="ncomp">
+                    <OptionItem option="ncomp_1"/>
+                    <OptionItem option="ncomp_2"/>
+                    <OptionItem option="ncomp_3"/>
+                    <OptionItem option="ncomp_4"/>
+                    <OptionItem option="ncomp_5"/>
+                    <OptionItem option="ncomp_All"/>
+                    <OptionItem option="ncompSpecify"/>
+                </OptionChoice>
+                <OptionItem option="ncompValue"/>
+                
+                <Group option="methodDetailsGroup">
+                    <OptionChoice option="methodCombo">
+                        <OptionItem option="eigMethodChoice"/>
+                        <OptionItem option="itergsMethodChoice"/>
+                        <OptionItem option="nipalsMethodChoice"/>
+                    </OptionChoice>
+                    <OptionChoice option="covCorr">
+                        <OptionItem option="analyzeCorr"/>
+                        <OptionItem option="analyzeCov"/>
+                    </OptionChoice>
+                    <OptionItem option="intercept"/>
+
+                    <OptionChoice option="stdScores">
+                        <OptionItem option="stdUnitVariance"/>
+                        <OptionItem option="stdEigenvalue"/>
+                    </OptionChoice>
+                    
+                    <OptionItem option="useMaxiter"/>
+                    <OptionItem option="maxiter"/>
+
+                    <OptionItem option="usePrefix"/>           
+                    <OptionItem option="prefix"/>
+                </Group>
+
+            </Group>
+            <Group open="true" option="plotsGroup">
+                <OptionChoice option="plotsCombo">
+                    <OptionItem option="defaultPlotChoice"/>
+                    <OptionItem option="customPlotChoice"/>
+                    <OptionItem option="noplotsCombo"/>
+                </OptionChoice>
+
+                <OptionItem option="screePlot"/>
+                <OptionItem option="profilePlot"/>
+                
+            </Group>
+
+        </Container>
+        
+        <Container option="outputTab">
+            
+            <Group open="true" option="outputGroup">
+                <OptionItem option="casOutputLibrefNote"/>
+                <OptionItem option="scoresDS"/>
+                <OptionItem option="scoresDSName"/>
+                
+                <OptionItem option="includeVarsInstruction"/>
+                <OptionItem option="includeAllVars"/>
+                <OptionItem option="includeAnalysisVars"/>
+                <OptionItem option="includeNoVars"/>
+                <OptionItem option="includeSelectedVars"/>
+                <RoleItem role="copyVariables"/>
+                
+                <OptionItem option="statDS"/>
+                <OptionItem option="statDSName"/>
+            </Group>
+        </Container>
+            
+    </UI>
+    
+    <Dependencies>
+        <Dependency condition="($methodCombo == 'eigMethodChoice')">
+            <Target action="show" conditionResult="true" option="stdScores"/>
+            <Target action="hide" conditionResult="false" option="stdScores"/>
+            <Target action="show" conditionResult="true" option="covCorr"/>
+            <Target action="hide" conditionResult="false" option="covCorr"/>
+            <Target action="show" conditionResult="true" option="intercept"/>
+            <Target action="hide" conditionResult="false" option="intercept"/>
+            <Target action="show" conditionResult="true" option="partialVariables"/>
+            <Target action="hide" conditionResult="false" option="partialVariables"/>
+            <Target action="show" conditionResult="true" option="freqVariable"/>
+            <Target action="hide" conditionResult="false" option="freqVariable"/>
+            <Target action="show" conditionResult="true" option="weightVariable"/>
+            <Target action="hide" conditionResult="false" option="weightVariable"/>
+       </Dependency>
+
+<!-- The order of these three dependencies is important -->
+<!-- This one should be first -->       
+        <Dependency condition="($methodCombo == 'eigMethodChoice')">
+            <Target action="show" conditionResult="true" option="statDS"/>
+            <Target action="hide" conditionResult="false" option="statDS"/>
+       </Dependency>
+<!-- This one should be second -->       
+        <Dependency condition="($methodCombo == 'eigMethodChoice')">
+            <Target action="show" conditionResult="true" option="statDSName"/>
+            <Target action="hide" conditionResult="false" option="statDSName"/>
+         </Dependency>
+<!-- This one should be third -->       
+        <Dependency condition="($methodCombo == 'eigMethodChoice' &amp;&amp; $statDS=='1')">
+            <Target action="enable" conditionResult="true" option="statDSName"/>
+            <Target action="disable" conditionResult="false" option="statDSName"/>
+        </Dependency>
+       
+        <Dependency condition="!($methodCombo == 'eigMethodChoice')">
+            <Target action="show" conditionResult="true" option="useMaxiter"/>
+            <Target action="hide" conditionResult="false" option="useMaxiter"/>
+        </Dependency>
+        <Dependency condition="!($methodCombo == 'eigMethodChoice') &amp;&amp; $useMaxiter == 1">
+            <Target action="show" conditionResult="true" option="maxiter"/>
+            <Target action="hide" conditionResult="false" option="maxiter"/>
+        </Dependency>
+        <Dependency condition="($usePrefix == '1')">
+            <Target action="show" conditionResult="true" option="prefix"/>
+            <Target action="hide" conditionResult="false" option="prefix"/>
+        </Dependency>
+        <Dependency condition="($ncomp=='ncompSpecify')">
+            <Target action="show" conditionResult="true" option="ncompValue"/>
+            <Target action="hide" conditionResult="false" option="ncompValue"/>
+        </Dependency>
+        <Dependency condition="($plotsCombo=='customPlotChoice')">
+            <Target action="show" conditionResult="true" option="screePlot"/>
+            <Target action="hide" conditionResult="false" option="screePlot"/>
+            <Target action="show" conditionResult="true" option="profilePlot"/>
+            <Target action="hide" conditionResult="false" option="profilePlot"/>
+        </Dependency>
+        <Dependency condition="($scoresDS=='1')">
+            <Target action="enable" conditionResult="true" option="scoresDSName"/>
+            <Target action="disable" conditionResult="false" option="scoresDSName"/>
+            <Target action="show" conditionResult="true" option="includeVarsInstruction"/>
+            <Target action="hide" conditionResult="false" option="includeVarsInstruction"/>
+            <Target action="show" conditionResult="true" option="includeVars"/>
+            <Target action="hide" conditionResult="false" option="includeVars"/>
+         </Dependency>
+        <Dependency condition="($scoresDS=='1' &amp;&amp; $includeVars=='includeSelectedVars')">
+            <Target action="show" conditionResult="true" option="copyVariables"/>
+            <Target action="hide" conditionResult="false" option="copyVariables"/>
+        </Dependency>
+        
+    </Dependencies>
+      
+    <CodeTemplate>
+        <![CDATA[
+ods noproctitle;
+
+proc pca data=$dataset 
+
+#if ($methodCombo == 'eigMethodChoice')
+   #if ($covCorr == "analyzeCov") cov #end
+   #if (!($intercept == "1")) noint #end
+   #if ($stdScores == "stdUnitVariance") std#end 
+   #if ($statDS == 1) outstat=$statDSName#end
+#else
+ method=#if ($methodCombo == 'itergsMethodChoice')itergs
+    #elseif ($methodCombo == 'nipalsMethodChoice')nipals
+    #end
+    #if ($useMaxiter == 1)(maxiter=$maxiter)#end
+#end
+
+#if ($usePrefix == 1) prefix=$CTMUtil.toSASName($prefix)#end
+#if (!($ncomp == "ncomp_All")) n=
+#if ($ncomp == "ncomp_1") 1
+#elseif ($ncomp == "ncomp_1") 1
+#elseif ($ncomp == "ncomp_2") 2
+#elseif ($ncomp == "ncomp_3") 3
+#elseif ($ncomp == "ncomp_4") 4
+#elseif ($ncomp == "ncomp_5") 5
+#elseif ($ncomp == "ncomp_6") 6
+#elseif ($ncomp == "ncomp_7") 7
+#elseif ($ncomp == "ncomp_8") 8
+#elseif ($ncomp == "ncomp_9") 9
+#elseif ($ncomp == "ncomp_10") 10
+#else
+$ncompValue
+#end
+#end
+
+#if($plotsCombo=='noplotsCombo') plots=none
+#elseif ($plotsCombo=='defaultPlotChoice') plots=(scree)
+#elseif ($plotsCombo=='customPlotChoice')
+   #if ($screePlot == 1 || $profilePlot == 1) plots=(
+      #if ($screePlot == "1") scree#end
+      #if ($profilePlot == "1") patternprofile#end
+)
+   #end
+#end
+;
+
+#if ($dataset.getWhereClause() != '')
+   where $dataset.getWhereClause();
+#end
+
+#if ( $analysisVariables.size() > 0 )   
+   var #foreach( $item in $analysisVariables ) $item #end; 
+#end
+#if ( $partialVariables.size() > 0 )   
+   partial #foreach( $item in $partialVariables ) $item #end; 
+#end
+
+#if( $freqVariable.size() > 0 )
+   freq #foreach( $item in $freqVariable ) $item #end;
+#end
+#if( $weightVariable.size() > 0 )
+   weight #foreach( $item in $weightVariable ) $item #end;
+#end
+
+#if( $byVariables.size() > 0 )
+   by #foreach( $item in $byVariables ) $item #end;
+#end
+
+#if ($scoresDS == 1) 
+   output out=$scoresDSName score#if ($usePrefix == 1)=$CTMUtil.toSASName($prefix)#end
+   #if     ($includeVars=='includeAllVars') copyvars=(_all_)
+   #elseif ($includeVars=='includeSelectedVars')
+      #if( $copyVariables.size() > 0 ) copyvars=(#foreach( $item in $copyVariables ) $item#end)#end
+   #elseif ($includeVars=='includeAnalysisVars')
+      #if ($analysisVariables.size() > 0 || 
+           $partialVariables.size() > 0 ||
+           $freqVariable.size() > 0 ||
+           $weightVariable.size() > 0 ||
+           $byVariables.size() > 0) 
+ copyvars=(
+         #if ($analysisVariables.size() > 0)
+             #foreach( $item in $analysisVariables ) $item#end
+         #end
+         #if ($partialVariables.size() > 0)
+             #foreach( $item in $partialVariables ) $item#end
+         #end
+         #if ($freqVariable.size() > 0)
+             #foreach( $item in $freqVariable ) $item#end
+         #end
+         #if ($weightVariable.size() > 0)
+             #foreach( $item in $weightVariable ) $item#end
+         #end
+         #if ($byVariables.size() > 0)
+             #foreach( $item in $byVariables ) $item#end
+         #end
+ )
+       #end  
+   #end
+;
+#end
+run;
+
+]]>
+    </CodeTemplate>
+</Task>
