@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><Task schemaVersion="5.4">
     <Registration>
-        <Name>Histogram</Name>
+        <Name>Histogram EDITED 2020Aug2020 four</Name>
         <Description>Creates a frequency distribution of a numeric variable.</Description>
         <GUID>8872623A-5287-45F0-B19D-683CA47020AC</GUID>
         <Procedures>SGPlot</Procedures>
