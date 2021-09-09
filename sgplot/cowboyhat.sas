@@ -1,4 +1,4 @@
-goptions cback=CRIMSON colors=(white cyan magenta gold yellow);
+goptions cback=CHARTREUSE colors=(white cyan magenta gold yellow);
 data hat;
 	do x=-5 to 5 by .25;
 		do y=-5 to 5 by .25;
